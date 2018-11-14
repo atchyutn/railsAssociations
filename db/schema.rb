@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_043155) do
+ActiveRecord::Schema.define(version: 2018_11_14_044428) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2018_11_14_043155) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "user_id"
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_enrollments_on_game_id"
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -33,6 +43,12 @@ ActiveRecord::Schema.define(version: 2018_11_14_043155) do
     t.integer "event_id"
     t.index ["event_id"], name: "index_events_users_on_event_id"
     t.index ["user_id"], name: "index_events_users_on_user_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
