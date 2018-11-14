@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_044428) do
+ActiveRecord::Schema.define(version: 2018_11_14_050856) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -51,6 +51,13 @@ ActiveRecord::Schema.define(version: 2018_11_14_044428) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "payment_histories", force: :cascade do |t|
+    t.integer "wallet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wallet_id"], name: "index_payment_histories_on_wallet_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.string "title"
@@ -64,6 +71,14 @@ ActiveRecord::Schema.define(version: 2018_11_14_044428) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "funds"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
 end
